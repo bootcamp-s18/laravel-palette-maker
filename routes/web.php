@@ -17,8 +17,10 @@
 
 Route::get('/', function() {
 
-	$red = DB::table('color')->select('id', 'name')->where('name', '=', 'Red')->first();
+	$colors = DB::table('color')->select('id', 'name', 'hex')->orderBy('name')->get();
 
-	return "ID: " . $red->id . ' is ' . $red->name;
+	$palettes = DB::table('palette')->select('id', 'name')->orderBy('name')->get();
+
+	return view('index', compact('colors', 'palettes'));
 
 });
