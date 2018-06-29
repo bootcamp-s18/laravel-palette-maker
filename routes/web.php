@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,6 +64,42 @@ Route::post('/palette/{id}/destroy', function($id) {
 	return redirect()->route('maker');
 
 });
+
+Route::post('/color/create', function(Request $request) {
+
+	$color = new \App\Color;
+	$color->name = $request->input('colorName');;
+	$color->hex = $request->input('hexCode');;
+
+	$color->save();
+
+	return redirect()->route('maker');
+
+});
+
+Route::post('/palette/create', function(Request $request) {
+
+	$palette = new \App\Palette;
+	$palette->name = $request->input('paletteName');
+
+	$palette->save();
+
+	return redirect()->route('maker');
+
+});
+
+Route::get('/palette/{palette_id}/colors/{color_id}/add', function($palette_id, $color_id) {
+
+	$palette = \App\Palette::find($palette_id);
+	$color = \App\Color::find($color_id);
+
+	$palette->colors()->attach($color);
+
+	return redirect()->route('maker');
+
+});
+
+
 
 
 
