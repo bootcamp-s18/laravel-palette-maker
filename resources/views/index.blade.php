@@ -58,9 +58,9 @@
 			<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $palette->id }}">{{ $palette->name }}</button>
 		</h5>
 		<div class="float-right col col-sm-auto text-right">
-			<form method="post" action="">
+			<form method="post" action="/palette/{{ $palette->id }}/destroy">
 				<button class="btn text-danger bg-transparent" type="submit"><i class="fas fa-trash-alt"></i></button>
-				<input type="hidden" name="deletePaletteId" value="{{ $palette->id }}">
+				@csrf
 			</form>
 		</div>
 	</div>
@@ -74,10 +74,9 @@
 					<div class="col m-auto"><strong>{{ $color->name }}</strong> <span class="text-secondary">#{{ $color->hex }}</span></div>
 					<div class="col m-auto" style="border: 1px solid #000; height: 30px; width: 60px; background-color: #{{ $color->hex }};"></div>
 					<div class="col col-sm-auto text-right">
-						<form method="post" action="">
+						<form method="post" action="/palette/{{ $palette->id }}/colors/{{ $color->id }}/destroy">
 							<button class="btn text-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
-							<input type="hidden" name="deleteColorId" value="{{ $color->id }}">
-							<input type="hidden" name="deleteFromPaletteId" value="{{ $palette->id }}">
+							@csrf
 						</form>
 					</div>
 				</div>
@@ -117,9 +116,9 @@
 @else 
 
 					<div class="col col-sm-auto text-right">
-						<form method="post" action="">
+						<form method="post" action="/color/{{ $color->id }}/destroy">
 							<button class="btn text-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
-							<input type="hidden" name="deleteColorId" value="' . $id . '">
+							@csrf
 						</form>
 					</div>
 

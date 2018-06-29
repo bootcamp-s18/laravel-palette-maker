@@ -25,8 +25,43 @@ Route::get('/palettemaker', function() {
 
 	return view('index', compact('colors', 'palettes'));
 
-});
+})->name('maker');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/color/{id}/destroy', function($id) {
+
+	$color = \App\Color::find($id);
+	$color->delete();
+
+	return redirect()->route('maker');	
+
+});
+
+Route::post('/palette/{palette_id}/colors/{color_id}/destroy', function($palette_id, $color_id) {
+
+	$palette = \App\Palette::find($palette_id);
+	$color = \App\Color::find($color_id);
+
+	$palette->colors()->detach($color);
+
+	return redirect()->route('maker');
+
+});
+
+Route::post('/palette/{id}/destroy', function($id) {
+
+	$palette = \App\Palette::find($id);
+
+	$palette->colors()->detach();
+	$palette->delete();
+
+	return redirect()->route('maker');
+
+});
+
+
+
