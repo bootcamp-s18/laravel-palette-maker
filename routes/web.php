@@ -15,11 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/palette_temp', function() {
+Route::get('/palettemaker', function() {
 
-	$colors = DB::table('color')->select('id', 'name', 'hex')->orderBy('name')->get();
+	// $colors = DB::table('color')->select('id', 'name', 'hex')->orderBy('name')->get();
+	// $palettes = DB::table('palettes')->select('id', 'name')->orderBy('name')->get();
 
-	$palettes = DB::table('palette')->select('id', 'name')->orderBy('name')->get();
+	$colors = \App\Color::orderBy('name', 'asc')->get();
+	$palettes = \App\Palette::orderBy('name', 'asc')->get();
 
 	return view('index', compact('colors', 'palettes'));
 

@@ -23,8 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $colors = \DB::table('color')->select('id', 'name', 'hex')->orderBy('name')->get();
-        $palettes = \DB::table('palette')->select('id', 'name')->orderBy('name')->get();
+        $colors = \DB::table('colors')->select('id', 'name', 'hex')->orderBy('name')->get();
+        $palettes = \DB::table('palettes')->select('id', 'name')->orderBy('name')->get();
         return view('home', compact('colors', 'palettes'));
     }
 }

@@ -7,7 +7,7 @@
 </head>
 <body class="container">
 
-	<p><a href="/?">Clear params</a></p>
+	<p><a href="/palettemaker?">Clear params</a></p>
 
 	<h1 class="mt-3">PHP Palette Maker</h1>
 
@@ -67,7 +67,23 @@
 	<div id="collapse{{ $palette->id }}" class="collapse" data-parent="#palettes">
 		<div class="card-body">
 
-			List of colors goes here!
+@foreach ($palette->colors as $color)
+
+			<div class="card rounded-0">
+				<div class="card-header row" id="color{{ $color->id }}" style="margin: 0 !important; padding: 0 !important; background-color: #FFFFFF;">
+					<div class="col m-auto"><strong>{{ $color->name }}</strong> <span class="text-secondary">#{{ $color->hex }}</span></div>
+					<div class="col m-auto" style="border: 1px solid #000; height: 30px; width: 60px; background-color: #{{ $color->hex }};"></div>
+					<div class="col col-sm-auto text-right">
+						<form method="post" action="">
+							<button class="btn text-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+							<input type="hidden" name="deleteColorId" value="{{ $color->id }}">
+							<input type="hidden" name="deleteFromPaletteId" value="{{ $palette->id }}">
+						</form>
+					</div>
+				</div>
+			</div>
+
+@endforeach
 
 		</div>
 	</div>
@@ -91,6 +107,24 @@
 				<div class="card-header row" id="color{{ $color->id }}" style="margin: 0 !important; padding: 0 !important; background-color: #FFFFFF;">
 					<div class="col m-auto"><strong>{{ $color->name }}</strong> <span class="text-secondary">#{{ $color->hex }}</span></div>
 					<div class="col m-auto" style="border: 1px solid #000; height: 30px; width: 60px; background-color: #{{ $color->hex }};"></div>
+
+@if ( count($color->palettes) > 0 )
+
+					<div class="col col-sm-auto text-right">
+						<button class="btn" disabled><i class="far fa-trash-alt"></i></button>
+					</div>
+
+@else 
+
+					<div class="col col-sm-auto text-right">
+						<form method="post" action="">
+							<button class="btn text-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
+							<input type="hidden" name="deleteColorId" value="' . $id . '">
+						</form>
+					</div>
+
+@endif
+
 				</div>
 			</div>
 

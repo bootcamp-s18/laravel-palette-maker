@@ -13,22 +13,22 @@ class ColorPaletteTableSeeder extends Seeder
     public function run()
     {
         
-		$red = DB::table('color')->select('id')->where('name', '=', 'Red')->first();
-		$orange = DB::table('color')->select('id')->where('name', '=', 'Orange')->first();
-		$yellow = DB::table('color')->select('id')->where('name', '=', 'Yellow')->first();
-		$green = DB::table('color')->select('id')->where('name', '=', 'Green')->first();
-		$blue = DB::table('color')->select('id')->where('name', '=', 'Blue')->first();
-		$purple = DB::table('color')->select('id')->where('name', '=', 'Purple')->first();
-		$white = DB::table('color')->select('id')->where('name', '=', 'White')->first();
-		$lightgrey = DB::table('color')->select('id')->where('name', '=', 'Light Grey')->first();
-		$grey = DB::table('color')->select('id')->where('name', '=', 'Grey')->first();
-		$darkgrey = DB::table('color')->select('id')->where('name', '=', 'Dark Grey')->first();
-		$black = DB::table('color')->select('id')->where('name', '=', 'Black')->first();
+		$red = DB::table('colors')->select('id')->where('name', '=', 'Red')->first();
+		$orange = DB::table('colors')->select('id')->where('name', '=', 'Orange')->first();
+		$yellow = DB::table('colors')->select('id')->where('name', '=', 'Yellow')->first();
+		$green = DB::table('colors')->select('id')->where('name', '=', 'Green')->first();
+		$blue = DB::table('colors')->select('id')->where('name', '=', 'Blue')->first();
+		$purple = DB::table('colors')->select('id')->where('name', '=', 'Purple')->first();
+		$white = DB::table('colors')->select('id')->where('name', '=', 'White')->first();
+		$lightgrey = DB::table('colors')->select('id')->where('name', '=', 'Light Grey')->first();
+		$grey = DB::table('colors')->select('id')->where('name', '=', 'Grey')->first();
+		$darkgrey = DB::table('colors')->select('id')->where('name', '=', 'Dark Grey')->first();
+		$black = DB::table('colors')->select('id')->where('name', '=', 'Black')->first();
 
-		$rainbow = DB::table('palette')->select('id')->where('name', '=', 'Rainbow')->first();
-		$halloween = DB::table('palette')->select('id')->where('name', '=', 'Halloween')->first();
-		$july = DB::table('palette')->select('id')->where('name', '=', '4th of July')->first();
-		$greyscale = DB::table('palette')->select('id')->where('name', '=', 'Greyscale')->first();
+		$rainbow = DB::table('palettes')->select('id')->where('name', '=', 'Rainbow')->first();
+		$halloween = DB::table('palettes')->select('id')->where('name', '=', 'Halloween')->first();
+		$july = DB::table('palettes')->select('id')->where('name', '=', '4th of July')->first();
+		$greyscale = DB::table('palettes')->select('id')->where('name', '=', 'Greyscale')->first();
 
 		DB::table('color_palette')->insert([
 			'color_id' => $red->id,

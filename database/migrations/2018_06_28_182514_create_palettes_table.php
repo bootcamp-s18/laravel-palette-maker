@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaletteTable extends Migration
+class CreatePalettesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePaletteTable extends Migration
      */
     public function up()
     {
-        Schema::create('palette', function (Blueprint $table) {
+        Schema::create('palettes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreatePaletteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('palette');
+        Schema::dropIfExists('palettes');
     }
 }
