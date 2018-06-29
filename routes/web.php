@@ -11,11 +11,11 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', function() {
+Route::get('/palette_temp', function() {
 
 	$colors = DB::table('color')->select('id', 'name', 'hex')->orderBy('name')->get();
 
@@ -24,3 +24,7 @@ Route::get('/', function() {
 	return view('index', compact('colors', 'palettes'));
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
